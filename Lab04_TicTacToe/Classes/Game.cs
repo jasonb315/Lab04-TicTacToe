@@ -22,6 +22,7 @@ namespace Lab04_TicTacToe.Classes
 			PlayerOne = p1;
 			PlayerTwo = p2;
 			Board = new Board();
+
 		}
 
 		/// <summary>
@@ -30,6 +31,21 @@ namespace Lab04_TicTacToe.Classes
 		/// <returns>Winner</returns>
 		public Player Play()
 		{
+            bool winner = false;
+            while (!winner)
+            {
+                Board.DisplayBoard();
+                PlayerOne.TakeTurn(Board);
+                winner = CheckForWinner(Board);
+
+                Board.DisplayBoard();
+                PlayerTwo.TakeTurn(Board);
+                winner = CheckForWinner(Board);
+            }
+            // 315 someone has won, do a thing
+
+
+
 
             //TODO: Complete this method and utilize the rest of the class structure to play the game.
 
@@ -40,13 +56,13 @@ namespace Lab04_TicTacToe.Classes
             1. A turn consists of a player picking a position on the board with their designated marker. 
             2. Display the board after every turn to show the most up to date state of the game
             3. Once a Winner is determined, display the board one final time and return a winner
-
             Few additional hints:
                 Be sure to keep track of the number of turns that have been taken to determine if a draw is required
                 and make sure that the game continues while there are unmarked spots on the board. 
 
             Use any and all pre-existing methods in this program to help construct the method logic. 
              */
+
             return new Player();
 		}
 
@@ -72,23 +88,36 @@ namespace Lab04_TicTacToe.Classes
 				new[] {3,5,7}
 			};
 
-			// Given all the winning conditions, Determine the winning logic. 
-			for (int i = 0; i < winners.Length; i++)
-			{
-				Position p1 = Player.PositionForNumber(winners[i][0]);
-				Position p2 = Player.PositionForNumber(winners[i][1]);
-				Position p3 = Player.PositionForNumber(winners[i][2]);
+            // Given all the winning conditions, Determine the winning logic. 
+            
+            for (int i = 0; i < winners.Length; i++)
+            {
+                Position p1 = Player.PositionForNumber(winners[i][0]);
+                Position p2 = Player.PositionForNumber(winners[i][1]);
+                Position p3 = Player.PositionForNumber(winners[i][2]);
 
-				string a = Board.GameBoard[p1.Row, p1.Column];
-				string b = Board.GameBoard[p2.Row, p2.Column];
-				string c = Board.GameBoard[p3.Row, p3.Column];
+                Console.WriteLine($"p1: {p1.Row},{p1.Column} p2: {p2.Row},{p2.Column} p3: {p3.Row},{p3.Column}");
+                
 
-				// TODO:  Determine a winner has been reached. 
-				// return true if a winner has been reached. 
-			
-			}
 
-			return false;
+                string a = Board.GameBoard[p1.Row, p1.Column];
+                string b = Board.GameBoard[p2.Row, p2.Column];
+                string c = Board.GameBoard[p3.Row, p3.Column];
+                //if a and b and c are all X or O then a win condition has been met.
+                Console.WriteLine($"a: {a} b: {b} c: {c}");
+
+                
+                //public string[,] GameBoard = new string[,]
+                //{
+                //    {"1", "2", "3"},
+                //    {"4", "5", "6"},
+                //    {"7", "8", "9"},
+                //};
+
+                // TODO:  Determine a winner has been reached. 
+                // return true if a winner has been reached. 
+            }
+            
 		}
 
 
