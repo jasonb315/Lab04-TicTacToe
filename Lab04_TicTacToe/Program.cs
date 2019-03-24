@@ -23,6 +23,9 @@ namespace Lab04_TicTacToe
             }
         }
 
+        /// <summary>
+        ///     Greeting, player/game setup, play initiation, and win report.
+        /// </summary>
         static void PlayGame()
         {
             //////////////////
@@ -30,17 +33,54 @@ namespace Lab04_TicTacToe
             string appName = "TickTackToe";
             string appVersion = "1.0.0";
             string appAuthor = "Jason Burns";
-            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+            
 
             Console.ForegroundColor = ConsoleColor.White;
             string title = @"
- ____  __  __    ____  __   __  _ _     ____  __  ___ 
-(_  _)(  )/ _)  (_  _)(  ) / _)( ) )   (_  _)/  \(  _)
-  )(   )(( (_     )(  /__\( (_  )  \     )( ( () )) _)
- (__) (__)\__)   (__)(_)(_)\__)(_)\_)   (__) \__/(___)
+ _______ _____ _____   _______       _____   _______ ____  ______ 
+|__   __|_   _/ ____| |__   __|/\   / ____| |__   __/ __ \|  ____|
+   | |    | || |         | |  /  \ | |         | | | |  | | |__   
+   | |    | || |         | | / /\ \| |         | | | |  | |  __|  
+   | |   _| || |____     | |/ ____ \ |____     | | | |__| | |____ 
+   |_|  |_____\_____|    |_/_/    \_\_____|    |_|  \____/|______|
                 ";
-            Console.Write(title);
-            Thread.Sleep(100);
+
+            int color = 0;
+            for (int i = 0; i < 7; i++)
+            {
+                if (color == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                if (color == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                }
+                if (color == 2)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                if (color == 3)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                if (color == 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                }
+                if (color == 5)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                }
+                Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+                Console.Write(title);
+                color++;
+                Thread.Sleep(300);
+                Console.Clear();
+            }
+
+
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
             //////////////////
 
@@ -80,11 +120,6 @@ namespace Lab04_TicTacToe
             {
                 Console.WriteLine("It's a draw!");
             }
-            
-
-            // TODO: Setup your game here. Create an introduction. 
-            // Create your players, and instantiate your Game class. 
-            // output to the console the winner
         }
     }
 }

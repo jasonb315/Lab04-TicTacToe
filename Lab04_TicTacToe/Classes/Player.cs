@@ -31,7 +31,11 @@ namespace Lab04_TicTacToe.Classes
 
 		}
 
-
+        /// <summary>
+        ///     Converts the user selection into a tuple-like class mapped to Classes.Board
+        /// </summary>
+        /// <param name="position">int position</param>
+        /// <returns>Position or null</returns>
 		public static Position PositionForNumber(int position)
 		{
 			switch (position)
@@ -50,7 +54,10 @@ namespace Lab04_TicTacToe.Classes
 			}
 		}
 
-	
+        /// <summary>
+        ///     Prompts user to take turn, checks turn against board, puts marker on board.
+        /// </summary>
+        /// <param name="board">Board board</param>
 		public void TakeTurn(Board board)
 		{
 			IsTurn = true;
