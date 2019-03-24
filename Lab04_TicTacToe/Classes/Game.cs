@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab04_TicTacToe.Classes
 {
-	class Game
+	public class Game
 	{
 		public Player PlayerOne { get; set; }
 		public Player PlayerTwo { get; set; }
@@ -22,7 +22,6 @@ namespace Lab04_TicTacToe.Classes
 			PlayerOne = p1;
 			PlayerTwo = p2;
 			Board = new Board();
-
 		}
 
 		/// <summary>
@@ -37,11 +36,18 @@ namespace Lab04_TicTacToe.Classes
             while (!winner)
             {
                 Board.DisplayBoard();
-                PlayerOne.TakeTurn(Board);
-                turns++;
-                PlayerOne.IsTurn = true;
-                PlayerTwo.IsTurn = false;
-                winner = CheckForWinner(Board);
+                bool validMove1 = PlayerOne.TakeTurn(Board);
+                if (validMove1)
+                {
+                    turns++;
+                    PlayerOne.IsTurn = true;
+                    PlayerTwo.IsTurn = false;
+                    winner = CheckForWinner(Board);
+                }
+                else
+                {
+                    Console.WriteLine("Ya snooz ya looze!");
+                }
 
                 if (winner)
                 {
@@ -55,11 +61,18 @@ namespace Lab04_TicTacToe.Classes
                 }
 
                 Board.DisplayBoard();
-                PlayerTwo.TakeTurn(Board);
-                turns++;
-                PlayerOne.IsTurn = false;
-                PlayerTwo.IsTurn = true;
-                winner = CheckForWinner(Board);
+                bool validMove2 = PlayerTwo.TakeTurn(Board);
+                if (validMove2)
+                {
+                    turns++;
+                    PlayerOne.IsTurn = false;
+                    PlayerTwo.IsTurn = true;
+                    winner = CheckForWinner(Board);
+                }
+                else
+                {
+                    Console.WriteLine("Ya snooz ya looze!");
+                }
 
                 if (winner)
                 {
@@ -72,7 +85,7 @@ namespace Lab04_TicTacToe.Classes
                     return null;
                 }
             }
-            // 315 someone has won, do a thing
+
             Board.DisplayBoard();
             Console.WriteLine($"decidedWinner {decidedWinner}");
 
@@ -153,10 +166,7 @@ namespace Lab04_TicTacToe.Classes
 		{
 			if (PlayerOne.IsTurn)
 			{
-              
 				PlayerOne.IsTurn = false;
-
-              
 				PlayerTwo.IsTurn = true;
 			}
 			else

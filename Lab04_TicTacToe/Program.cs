@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace Lab04_TicTacToe
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -42,7 +42,7 @@ namespace Lab04_TicTacToe
    | |    | || |         | |  /  \ | |         | | | |  | | |__   
    | |    | || |         | | / /\ \| |         | | | |  | |  __|  
    | |   _| || |____     | |/ ____ \ |____     | | | |__| | |____ 
-   |_|  |_____\_____|    |_/_/    \_\_____|    |_|  \____/|______|
+   |_|  |_____\_____|    |_/_/    \_\_____|    |_|  \____/|______| !!
                 ";
 
             int color = 0;
@@ -75,7 +75,7 @@ namespace Lab04_TicTacToe
                 Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
                 Console.Write(title);
                 color++;
-                Thread.Sleep(300);
+                Thread.Sleep(400);
                 Console.Clear();
             }
 
