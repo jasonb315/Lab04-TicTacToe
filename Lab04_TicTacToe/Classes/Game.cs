@@ -89,36 +89,27 @@ namespace Lab04_TicTacToe.Classes
 			};
 
             // Given all the winning conditions, Determine the winning logic. 
-            
+            bool returnBool = false;
             for (int i = 0; i < winners.Length; i++)
             {
                 Position p1 = Player.PositionForNumber(winners[i][0]);
                 Position p2 = Player.PositionForNumber(winners[i][1]);
                 Position p3 = Player.PositionForNumber(winners[i][2]);
 
-                Console.WriteLine($"p1: {p1.Row},{p1.Column} p2: {p2.Row},{p2.Column} p3: {p3.Row},{p3.Column}");
-                
-
-
                 string a = Board.GameBoard[p1.Row, p1.Column];
                 string b = Board.GameBoard[p2.Row, p2.Column];
                 string c = Board.GameBoard[p3.Row, p3.Column];
-                //if a and b and c are all X or O then a win condition has been met.
-                Console.WriteLine($"a: {a} b: {b} c: {c}");
 
-                
-                //public string[,] GameBoard = new string[,]
-                //{
-                //    {"1", "2", "3"},
-                //    {"4", "5", "6"},
-                //    {"7", "8", "9"},
-                //};
+                if (a == b && b == c)
+                {
+                    Console.WriteLine("ding ding haha");
+                    Console.WriteLine("ding ding haha");
 
-                // TODO:  Determine a winner has been reached. 
-                // return true if a winner has been reached. 
+                    returnBool = true;
+                }
             }
-            
-		}
+            return returnBool;
+        }
 
 
 		/// <summary>
