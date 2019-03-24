@@ -31,18 +31,70 @@ namespace Lab04_TicTacToe.Classes
 		/// <returns>Winner</returns>
 		public Player Play()
 		{
+            bool decidedWinner = false;
             bool winner = false;
+            int turns = 0;
             while (!winner)
             {
                 Board.DisplayBoard();
                 PlayerOne.TakeTurn(Board);
+                turns++;
+                PlayerOne.IsTurn = true;
+                PlayerTwo.IsTurn = false;
                 winner = CheckForWinner(Board);
+
+                if (winner)
+                {
+                    decidedWinner = true;
+                    break;
+                }
+
+                if (turns == 9 && !winner)
+                {
+                    return null;
+                }
 
                 Board.DisplayBoard();
                 PlayerTwo.TakeTurn(Board);
+                turns++;
+                PlayerOne.IsTurn = false;
+                PlayerTwo.IsTurn = true;
                 winner = CheckForWinner(Board);
+
+                if (winner)
+                {
+                    decidedWinner = true;
+                    break;
+                }
+
+                if (turns == 9 && !winner)
+                {
+                    return null;
+                }
             }
             // 315 someone has won, do a thing
+            Board.DisplayBoard();
+            Console.WriteLine($"decidedWinner {decidedWinner}");
+
+            if (decidedWinner)
+            {
+                if (PlayerOne.IsTurn)
+                {
+                    return PlayerOne;
+                }
+                else
+                {
+                    return PlayerOne;
+                }
+            }
+            else
+            {
+                Console.Write("DRAW!!!!!");
+                return null;
+                // draw, needs to return null
+            }
+
+
 
 
 
@@ -63,8 +115,7 @@ namespace Lab04_TicTacToe.Classes
             Use any and all pre-existing methods in this program to help construct the method logic. 
              */
 
-            return new Player();
-		}
+        }
 
 
 		/// <summary>
@@ -102,9 +153,6 @@ namespace Lab04_TicTacToe.Classes
 
                 if (a == b && b == c)
                 {
-                    Console.WriteLine("ding ding haha");
-                    Console.WriteLine("ding ding haha");
-
                     returnBool = true;
                 }
             }
