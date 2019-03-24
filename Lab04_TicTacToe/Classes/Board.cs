@@ -16,7 +16,9 @@ namespace Lab04_TicTacToe.Classes
 			{"7", "8", "9"},
 		};
 
-
+        /// <summary>
+        ///     Reads the Board to the user.
+        /// </summary>
 		public void DisplayBoard()
 		{
 
