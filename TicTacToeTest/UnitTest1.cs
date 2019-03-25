@@ -2,9 +2,6 @@ using Lab04_TicTacToe.Classes;
 using System;
 using Xunit;
 
-//Test to confirm that the position the player inputs correlates to the correct index of the array
-//One other “unique” test of your own
-
 namespace Lab04_TicTacToe
 {
     public class UnitTests
@@ -21,7 +18,6 @@ namespace Lab04_TicTacToe
             };
             testBoard.GameBoard = winBoard;
 
-
             Player player1 = new Player
             {
                 Name = "p1",
@@ -42,7 +38,6 @@ namespace Lab04_TicTacToe
             bool win = actualGame.CheckForWinner(testBoard);
 
             Assert.True(win);
-
         }
 
         [Fact]
@@ -57,7 +52,6 @@ namespace Lab04_TicTacToe
             };
             testBoard.GameBoard = winBoard;
 
-
             Player player1 = new Player
             {
                 Name = "p1",
@@ -78,7 +72,6 @@ namespace Lab04_TicTacToe
             bool win = actualGame.CheckForWinner(testBoard);
 
             Assert.True(win);
-
         }
 
         [Fact]
@@ -107,7 +100,21 @@ namespace Lab04_TicTacToe
 
             Assert.False(actualGame.PlayerOne.IsTurn);
             Assert.True(actualGame.PlayerTwo.IsTurn);
+        }
 
+        [Fact]
+        public void PositionMappingFromSelectToBoard()
+        {
+            Player player1 = new Player
+            {
+                Name = "p1",
+                Marker = "X",
+                IsTurn = true
+            };
+
+            Position testPosition = Player.PositionForNumber(1);
+            Assert.Equal(0, testPosition.Row);
+            Assert.Equal(0, testPosition.Column);
         }
     }
 }
