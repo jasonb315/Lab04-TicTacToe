@@ -28,8 +28,12 @@ Then select and open ```WordGuessGame.sln```
 
 ## Visuals
 
-##### Application Start
-<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/home.JPG) <br> -->
+##### Playing Game
+![Capture](https://github.com/jasonb315/Lab04-TicTacToe/blob/master/assets/playing.JPG) <br>
+
+##### Win
+![Capture](https://github.com/jasonb315/Lab04-TicTacToe/blob/master/assets/win.JPG) <br>
+
 
 
 ------------------------------
