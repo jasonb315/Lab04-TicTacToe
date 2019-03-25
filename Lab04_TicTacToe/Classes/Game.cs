@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab04_TicTacToe.Classes
 {
-	class Game
+	public class Game
 	{
 		public Player PlayerOne { get; set; }
 		public Player PlayerTwo { get; set; }
@@ -30,24 +30,82 @@ namespace Lab04_TicTacToe.Classes
 		/// <returns>Winner</returns>
 		public Player Play()
 		{
+            bool decidedWinner = false;
+            bool winner = false;
+            int turns = 0;
+            while (!winner)
+            {
+                Board.DisplayBoard();
+                bool validMove1 = PlayerOne.TakeTurn(Board);
+                if (validMove1)
+                {
+                    turns++;
+                    PlayerOne.IsTurn = true;
+                    PlayerTwo.IsTurn = false;
+                    winner = CheckForWinner(Board);
+                }
+                else
+                {
+                    Console.WriteLine("Ya snooz ya looze!");
+                }
 
-			//TODO: Complete this method and utilize the rest of the class structure to play the game.
+                if (winner)
+                {
+                    decidedWinner = true;
+                    break;
+                }
 
-            /*
-             * Complete this method by constructing the logic for the actual playing of Tic Tac Toe. 
-             * 
-             * A few things to get you started:
-            1. A turn consists of a player picking a position on the board with their designated marker. 
-            2. Display the board after every turn to show the most up to date state of the game
-            3. Once a Winner is determined, display the board one final time and return a winner
+                if (turns == 9 && !winner)
+                {
+                    return null;
+                }
 
-            Few additional hints:
-                Be sure to keep track of the number of turns that have been taken to determine if a draw is required
-                and make sure that the game continues while there are unmarked spots on the board. 
+                Board.DisplayBoard();
+                bool validMove2 = PlayerTwo.TakeTurn(Board);
+                if (validMove2)
+                {
+                    turns++;
+                    PlayerOne.IsTurn = false;
+                    PlayerTwo.IsTurn = true;
+                    winner = CheckForWinner(Board);
+                }
+                else
+                {
+                    Console.WriteLine("Ya snooz ya looze!");
+                }
 
-            Use any and all pre-existing methods in this program to help construct the method logic. 
-             */
-		}
+                if (winner)
+                {
+                    decidedWinner = true;
+                    break;
+                }
+
+                if (turns == 9 && !winner)
+                {
+                    return null;
+                }
+            }
+
+            Board.DisplayBoard();
+            Console.WriteLine($"decidedWinner {decidedWinner}");
+
+            if (decidedWinner)
+            {
+                if (PlayerOne.IsTurn)
+                {
+                    return PlayerOne;
+                }
+                else
+                {
+                    return PlayerOne;
+                }
+            }
+            else
+            {
+                Console.Write("It's a draw!");
+                return null;
+            }
+        }
 
 
 		/// <summary>
@@ -71,24 +129,25 @@ namespace Lab04_TicTacToe.Classes
 				new[] {3,5,7}
 			};
 
-			// Given all the winning conditions, Determine the winning logic. 
-			for (int i = 0; i < winners.Length; i++)
-			{
-				Position p1 = Player.PositionForNumber(winners[i][0]);
-				Position p2 = Player.PositionForNumber(winners[i][1]);
-				Position p3 = Player.PositionForNumber(winners[i][2]);
+            // Given all the winning conditions, Determine the winning logic. 
+            bool returnBool = false;
+            for (int i = 0; i < winners.Length; i++)
+            {
+                Position p1 = Player.PositionForNumber(winners[i][0]);
+                Position p2 = Player.PositionForNumber(winners[i][1]);
+                Position p3 = Player.PositionForNumber(winners[i][2]);
 
-				string a = Board.GameBoard[p1.Row, p1.Column];
-				string b = Board.GameBoard[p2.Row, p2.Column];
-				string c = Board.GameBoard[p3.Row, p3.Column];
+                string a = Board.GameBoard[p1.Row, p1.Column];
+                string b = Board.GameBoard[p2.Row, p2.Column];
+                string c = Board.GameBoard[p3.Row, p3.Column];
 
-				// TODO:  Determine a winner has been reached. 
-				// return true if a winner has been reached. 
-			
-			}
-
-			return false;
-		}
+                if (a == b && b == c)
+                {
+                    returnBool = true;
+                }
+            }
+            return returnBool;
+        }
 
 
 		/// <summary>
@@ -107,10 +166,7 @@ namespace Lab04_TicTacToe.Classes
 		{
 			if (PlayerOne.IsTurn)
 			{
-              
 				PlayerOne.IsTurn = false;
-
-              
 				PlayerTwo.IsTurn = true;
 			}
 			else
